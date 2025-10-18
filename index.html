@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Искусство ногтей и слов | Маникюр с душой</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #ffeef8;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #b19cd9 0%, #ffb6c1 100%);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "✨";
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        header::after {
+            content: "💖";
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        .gallery-section {
+            padding: 2rem;
+            margin: 1rem auto;
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 1rem 0;
+        }
+
+        .color-item {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .color-item:hover {
+            transform: scale(1.1);
+        }
+
+        .color-number {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 1px solid #ddd;
+        }
+
+        .sticker-item, .stamp-item, .decor-item, .top-item {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .sticker-item:hover, .stamp-item:hover, .decor-item:hover, .top-item:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+            color: #9c4dcc;
+            text-align: center;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .price-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .service-name {
+            font-weight: bold;
+            color: #9c4dcc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #333;
+            color: white;
+            margin-top: 2rem;
+        }
+
+        .tagline {
+            font-style: italic;
+            margin-top: 10px;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .gallery-section {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .psychology-note {
+            background: #ffecf1;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+            text-align: center;
+            border-left: 4px solid #9c4dcc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎨 Искусство ногтей и слов</h1>
+        <p>💅 Ноготочки попилим, сплетни соберём, душу отведём!</p>
+    </header>
+
+    <section class="gallery-section">
+        <h2>🎨 Палитра цветов</h2>
+        <div class="gallery" id="colors-gallery">
+            <!-- 60 цветов будут добавлены через JavaScript -->
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <h2>🖼️ Стемпинг</h2>
+        <div class="gallery" id="stamping-gallery">
+            <!-- Стемпинг будет добавлен через JavaScript -->
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <h2>🌟 Декоративные топы</h2>
+        <div class="gallery" id="tops-gallery">
+            <!-- Декоративные топы будут добавлены через JavaScript -->
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <h2>💎 Декор</h2>
+        <div class="gallery" id="decor-gallery">
+            <!-- Декор будет добавлен через JavaScript -->
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <h2>⭐ Наклейки</h2>
+        <div class="gallery" id="stickers-gallery">
+            <!-- Наклейки будут добавлены через JavaScript -->
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <h2>💰 Прайс-лист</h2>
+        <table class="price-table">
+            <tr>
+                <td class="service-name">Маникюр с покрытием (маникюр + покрытие гель-лаком)</td>
+                <td>700 руб.</td>
+            </tr>
+            <tr>
+                <td class="service-name">Маникюр с укреплением (маникюр + покрытие гель-лаком + укрепление полигелем)</td>
+                <td>900 руб.</td>
+            </tr>
+            <tr>
+                <td class="service-name">Маникюр без покрытия (снятие)</td>
+                <td>200 руб.</td>
+            </tr>
+        </table>
+        
+        <div class="psychology-note">
+            <strong>🧠 Психологический бонус:</strong><br>
+            Каждый маникюр включает душевную беседу и психологическую поддержку!
+        </div>
+    </section>
+
+    <footer>
+        <p>📞 Телефон: +7 (980) 332-67-35</p>
+        <p>📍 Адрес: ул. Комсомольская, д. 194, кв. 24</p>
+        <p style="margin-top: 15px; font-style: italic;">"Преображаем не только ногти, но и настроение!"</p>
+    </footer>
+
+    <script>
+        // Генератор 60 цветов - базовые цвета, вы замените на свои
+        const colors = [];
+        for (let i = 1; i <= 60; i++) {
+            // Создаём разнообразные оттенки для демонстрации
+            const hue = (i * 50) % 360;
+            colors.push(`hsl(${hue}, 70%, 65%)`);
+        }
+
+        const colorsGallery = document.getElementById('colors-gallery');
+        colors.forEach((color, index) => {
+            const colorElement = document.createElement('div');
+            colorElement.className = 'color-item';
+            colorElement.style.backgroundColor = color;
+            
+            // Добавляем номер цвета в кружочке
+            const numberElement = document.createElement('div');
+            numberElement.className = 'color-number';
+            numberElement.textContent = index + 1;
+            colorElement.appendChild(numberElement);
+            
+            colorsGallery.appendChild(colorElement);
+        });
+
+        // Заглушки для изображений (замените на свои)
+        const imageUrls = [
+            'https://via.placeholder.com/150/FFB6C1/FFFFFF?text=💖',
+            'https://via.placeholder.com/150/98FB98/FFFFFF?text=⭐',
+            'https://via.placeholder.com/150/87CEEB/FFFFFF?text=🎀',
+            'https://via.placeholder.com/150/DDA0DD/FFFFFF?text=✨',
+            'https://via.placeholder.com/150/F0E68C/FFFFFF?text=🌺'
+        ];
+
+        // Заполняем галереи изображениями
+        const galleries = [
+            {id: 'stamping-gallery', class: 'stamp-item'},
+            {id: 'tops-gallery', class: 'top-item'},
+            {id: 'decor-gallery', class: 'decor-item'},
+            {id: 'stickers-gallery', class: 'sticker-item'}
+        ];
+
+        galleries.forEach(gallery => {
+            const galleryElement = document.getElementById(gallery.id);
+            imageUrls.forEach(url => {
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = "Пример работы";
+                img.className = gallery.class;
+                galleryElement.appendChild(img);
+            });
+        });
+    </script>
+</body>
+</html>
