@@ -53,55 +53,74 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .gallery {
+        .colors-carousel {
             display: flex;
             overflow-x: auto;
-            gap: 15px;
-            padding: 1rem 0;
+            gap: 20px;
+            padding: 2rem 1rem;
+            scroll-behavior: smooth;
         }
 
         .color-item {
-            width: 80px;
-            height: 80px;
-            border-radius: 10px;
+            width: 100px;
+            height: 100px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             flex-shrink: 0;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
             position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .color-item:hover {
             transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
 
         .color-number {
             position: absolute;
-            top: 2px;
-            left: 2px;
-            background: rgba(255,255,255,0.9);
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #9c4dcc;
+            color: white;
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 12px;
+            width: 30px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            border: 1px solid #ddd;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .sticker-item, .stamp-item, .decor-item, .top-item {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 15px;
             flex-shrink: 0;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             transition: transform 0.3s ease;
+            position: relative;
         }
 
         .sticker-item:hover, .stamp-item:hover, .decor-item:hover, .top-item:hover {
             transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .top-label {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            background: rgba(156, 77, 204, 0.9);
+            color: white;
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 0 0 15px 15px;
         }
 
         h2 {
@@ -163,6 +182,36 @@
             text-align: center;
             border-left: 4px solid #9c4dcc;
         }
+
+        .gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 1.5rem 0;
+        }
+
+        /* Стили для карусели */
+        .colors-carousel::-webkit-scrollbar,
+        .gallery::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .colors-carousel::-webkit-scrollbar-track,
+        .gallery::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .colors-carousel::-webkit-scrollbar-thumb,
+        .gallery::-webkit-scrollbar-thumb {
+            background: #9c4dcc;
+            border-radius: 10px;
+        }
+
+        .colors-carousel::-webkit-scrollbar-thumb:hover,
+        .gallery::-webkit-scrollbar-thumb:hover {
+            background: #7a3da3;
+        }
     </style>
 </head>
 <body>
@@ -173,8 +222,15 @@
 
     <section class="gallery-section">
         <h2>🎨 Палитра цветов</h2>
-        <div class="gallery" id="colors-gallery">
-            <!-- 60 цветов будут добавлены через JavaScript -->
+        <div class="colors-carousel" id="colors-carousel">
+            <!-- Цвета будут добавлены через JavaScript -->
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <h2>🌟 Декоративные топы с блёстками</h2>
+        <div class="gallery" id="tops-gallery">
+            <!-- Топы будут добавлены через JavaScript -->
         </div>
     </section>
 
@@ -182,13 +238,6 @@
         <h2>🖼️ Стемпинг</h2>
         <div class="gallery" id="stamping-gallery">
             <!-- Стемпинг будет добавлен через JavaScript -->
-        </div>
-    </section>
-
-    <section class="gallery-section">
-        <h2>🌟 Декоративные топы</h2>
-        <div class="gallery" id="tops-gallery">
-            <!-- Декоративные топы будут добавлены через JavaScript -->
         </div>
     </section>
 
@@ -236,42 +285,132 @@
     </footer>
 
     <script>
-        // Генератор 60 цветов - базовые цвета, вы замените на свои
-        const colors = [];
-        for (let i = 1; i <= 60; i++) {
-            // Создаём разнообразные оттенки для демонстрации
-            const hue = (i * 50) % 360;
-            colors.push(`hsl(${hue}, 70%, 65%)`);
-        }
-
-        const colorsGallery = document.getElementById('colors-gallery');
-        colors.forEach((color, index) => {
-            const colorElement = document.createElement('div');
-            colorElement.className = 'color-item';
-            colorElement.style.backgroundColor = color;
-            
-            // Добавляем номер цвета в кружочке
-            const numberElement = document.createElement('div');
-            numberElement.className = 'color-number';
-            numberElement.textContent = index + 1;
-            colorElement.appendChild(numberElement);
-            
-            colorsGallery.appendChild(colorElement);
-        });
-
-        // Заглушки для изображений (замените на свои)
-        const imageUrls = [
-            'https://via.placeholder.com/150/FFB6C1/FFFFFF?text=💖',
-            'https://via.placeholder.com/150/98FB98/FFFFFF?text=⭐',
-            'https://via.placeholder.com/150/87CEEB/FFFFFF?text=🎀',
-            'https://via.placeholder.com/150/DDA0DD/FFFFFF?text=✨',
-            'https://via.placeholder.com/150/F0E68C/FFFFFF?text=🌺'
+        // Ваша палитра цветов в правильном порядке
+        const colors = [
+            { number: '009', hex: '#63B6CD' },
+            { number: '025', hex: '#78B6BF' },
+            { number: '006', hex: '#A7B2CD' },
+            { number: '021', hex: '#2DB0EB' },
+            { number: '022', hex: '#197E9C' },
+            { number: '023', hex: '#0F74AE' },
+            { number: '024', hex: '#281E73' },
+            { number: '052', hex: '#1E1E1E' },
+            { number: '051', hex: '#FEFFFE' },
+            { number: '002', hex: '#D28B80' },
+            { number: '004', hex: '#FA969D' },
+            { number: '003', hex: '#D599AA' },
+            { number: '005', hex: '#CD9DAC' },
+            { number: '014', hex: '#F8AEAA' },
+            { number: '015', hex: '#B18C97' },
+            { number: '018', hex: '#CABCD2' },
+            { number: '026', hex: '#AA9AC1' },
+            { number: '019', hex: '#D4CFDF' },
+            { number: '010', hex: '#9477C7' },
+            { number: '027', hex: '#B69CDA' },
+            { number: '017', hex: '#D699BF' },
+            { number: '008', hex: '#D05571' },
+            { number: '042', hex: '#FD3A6D' },
+            { number: '041', hex: '#F02767' },
+            { number: '028', hex: '#974580' },
+            { number: '030', hex: '#53106D' },
+            { number: '029', hex: '#751B80' },
+            { number: '055', hex: '#9397A3' },
+            { number: '056', hex: '#B9AFA5' },
+            { number: '057', hex: '#8C6247' },
+            { number: '011', hex: '#DCBC86' },
+            { number: '012', hex: '#BFA98A' },
+            { number: '001', hex: '#D5A520' },
+            { number: '031', hex: '#CBEF5C' },
+            { number: '007', hex: '#50C29B' },
+            { number: '034', hex: '#57C7A1' },
+            { number: '033', hex: '#01BA4B' },
+            { number: '032', hex: '#85EF31' },
+            { number: '035', hex: '#DF7600' },
+            { number: '036', hex: '#DE5E01' },
+            { number: '037', hex: '#CC452C' },
+            { number: '043', hex: '#D20001' },
+            { number: '044', hex: '#A90C0D' },
+            { number: '045', hex: '#8E0006' },
+            { number: '039', hex: '#722428' },
+            { number: '038', hex: '#8D372C' },
+            { number: '046', hex: '#931320' },
+            { number: '048', hex: '#971151' },
+            { number: '040', hex: '#3F063A' },
+            { number: '047', hex: '#7E004A' },
+            { number: '013', hex: '#996E68' },
+            { number: '016', hex: '#846970' },
+            { number: '058', hex: '#5B1900' },
+            { number: '059', hex: '#351001' },
+            { number: '060', hex: '#220C01' },
+            { number: '053', hex: '#737C8D' },
+            { number: '054', hex: '#979FB0' },
+            { number: '020', hex: '#B8B0BF' }
         ];
 
-        // Заполняем галереи изображениями
+        // Создаем горизонтальную карусель цветов
+        const colorsCarousel = document.getElementById('colors-carousel');
+        
+        colors.forEach(color => {
+            const colorItem = document.createElement('div');
+            colorItem.className = 'color-item';
+            colorItem.style.backgroundColor = color.hex;
+            
+            const numberElement = document.createElement('div');
+            numberElement.className = 'color-number';
+            numberElement.textContent = color.number;
+            
+            colorItem.appendChild(numberElement);
+            colorsCarousel.appendChild(colorItem);
+        });
+
+        // Ваши топы с блёстками
+        const tops = [
+            { 
+                name: 'Розовый крупный', 
+                url: 'https://ibb.co/gb88p8X8',
+                image: 'https://i.ibb.co/gb88p8X8/photo-2024-12-26-18-28-30.jpg'
+            },
+            { 
+                name: 'Розовый мелкий', 
+                url: 'https://ibb.co/p6QqwdH2',
+                image: 'https://i.ibb.co/p6QqwdH2/photo-2024-12-26-18-28-34.jpg'
+            },
+            { 
+                name: 'Мелкое серебро', 
+                url: 'https://ibb.co/nM41Sm2W',
+                image: 'https://i.ibb.co/nM41Sm2W/photo-2024-12-26-18-28-37.jpg'
+            }
+        ];
+
+        // Добавляем топы в галерею
+        const topsGallery = document.getElementById('tops-gallery');
+        
+        tops.forEach(top => {
+            const topItem = document.createElement('img');
+            topItem.className = 'top-item';
+            topItem.src = top.image;
+            topItem.alt = top.name;
+            
+            const label = document.createElement('div');
+            label.className = 'top-label';
+            label.textContent = top.name;
+            
+            topItem.appendChild(label);
+            topsGallery.appendChild(topItem);
+        });
+
+        // Заглушки для остальных галерей
+        const imageUrls = [
+            'https://via.placeholder.com/180/FFB6C1/FFFFFF?text=💖',
+            'https://via.placeholder.com/180/98FB98/FFFFFF?text=⭐',
+            'https://via.placeholder.com/180/87CEEB/FFFFFF?text=🎀',
+            'https://via.placeholder.com/180/DDA0DD/FFFFFF?text=✨',
+            'https://via.placeholder.com/180/F0E68C/FFFFFF?text=🌺'
+        ];
+
+        // Заполняем остальные галереи изображениями
         const galleries = [
             {id: 'stamping-gallery', class: 'stamp-item'},
-            {id: 'tops-gallery', class: 'top-item'},
             {id: 'decor-gallery', class: 'decor-item'},
             {id: 'stickers-gallery', class: 'sticker-item'}
         ];
