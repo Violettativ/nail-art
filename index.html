@@ -15,7 +15,7 @@
         body {
             background: #ffeef8;
             color: #333;
-            font-style: italic; /* Легкий наклон всего текста */
+            font-style: italic;
         }
 
         header {
@@ -95,30 +95,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
-        /* Стемпинг - крупнее и по центру */
-        .stamp-item {
-            width: 220px;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-
-        /* Декоративные топы - меньше */
-        .top-item {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 15px;
-            flex-shrink: 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-
-        .decor-item {
+        .stamp-item, .decor-item, .top-item {
             width: 180px;
             height: 180px;
             object-fit: cover;
@@ -151,7 +128,7 @@
             margin-bottom: 1rem;
             color: white;
             text-align: center;
-            text-transform: uppercase; /* КАПС */
+            text-transform: uppercase;
             font-size: 2.5rem;
             letter-spacing: 2px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
@@ -225,7 +202,6 @@
             font-size: 1.1rem;
         }
 
-        /* Анимации */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -244,27 +220,23 @@
             border-left: 4px solid #9c4dcc;
         }
 
-        /* Галереи с центрированием */
         .gallery {
             display: flex;
             overflow-x: auto;
             gap: 20px;
             padding: 1.5rem 0;
-            justify-content: center; /* Центрируем элементы */
-            flex-wrap: wrap; /* Перенос на новую строку если не помещаются */
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        /* Специально для стемпинга - только 2 фото по центру */
         #stamping-gallery {
             justify-content: center;
         }
 
-        /* Специально для декора - 3 фото по центру */
         #decor-gallery {
             justify-content: center;
         }
 
-        /* Стили для карусели */
         .colors-carousel::-webkit-scrollbar,
         .gallery::-webkit-scrollbar {
             height: 8px;
@@ -326,7 +298,7 @@
     </section>
 
     <section class="gallery-section">
-        <h2>💰 Прайс</h2>
+        <h2>💰 Прайс-лист</h2>
         <table class="price-table">
             <tr>
                 <td class="service-name">Маникюр с покрытием (маникюр + покрытие гель-лаком)</td>
@@ -340,10 +312,18 @@
                 <td class="service-name">Маникюр без покрытия (снятие)</td>
                 <td>200 руб.</td>
             </tr>
+            <tr>
+                <td class="service-name">Декоративные топы</td>
+                <td>+200 руб.</td>
+            </tr>
+            <tr>
+                <td class="service-name">Декор (стразы, наклейки, блёстки)</td>
+                <td>+100 руб.</td>
+            </tr>
         </table>
         
         <div class="psychology-note">
-            <strong>🧠 Бонус к процедуре:</strong><br>
+            <strong>🧠 Психологический бонус:</strong><br>
             Каждый маникюр включает душевную беседу и психологическую поддержку!
         </div>
     </section>
@@ -417,7 +397,6 @@
             { number: '020', hex: '#B8B0BF' }
         ];
 
-        // Создаем горизонтальную карусель цветов
         const colorsCarousel = document.getElementById('colors-carousel');
         
         colors.forEach(color => {
@@ -435,39 +414,16 @@
 
         // Декоративные топы
         const tops = [
-            { 
-                name: 'Топ 1', 
-                image: 'https://i.ibb.co/XfC66Z5x/photo-2024-12-26-18-28-30.jpg'
-            },
-            { 
-                name: 'Топ 2', 
-                image: 'https://i.ibb.co/Wv525phb/photo-2024-12-26-18-28-34.jpg'
-            },
-            { 
-                name: 'Топ 3', 
-                image: 'https://i.ibb.co/gLPFmFPp/photo-2024-12-26-18-28-37.jpg'
-            },
-            { 
-                name: 'Топ 4', 
-                image: 'https://i.ibb.co/G3rqY7yc/photo-2024-12-26-18-28-40.jpg'
-            },
-            { 
-                name: 'Топ 5', 
-                image: 'https://i.ibb.co/XfTvWD7f/photo-2024-12-26-18-28-43.jpg'
-            },
-            { 
-                name: 'Топ 6', 
-                image: 'https://i.ibb.co/99TzLtY8/photo-2024-12-26-18-28-46.jpg'
-            },
-            { 
-                name: 'Топ 7', 
-                image: 'https://i.ibb.co/Ndjx7C0g/photo-2024-12-26-18-28-49.jpg'
-            }
+            { name: 'Топ 1', image: 'https://i.ibb.co/XfC66Z5x/photo-2024-12-26-18-28-30.jpg' },
+            { name: 'Топ 2', image: 'https://i.ibb.co/Wv525phb/photo-2024-12-26-18-28-34.jpg' },
+            { name: 'Топ 3', image: 'https://i.ibb.co/gLPFmFPp/photo-2024-12-26-18-28-37.jpg' },
+            { name: 'Топ 4', image: 'https://i.ibb.co/G3rqY7yc/photo-2024-12-26-18-28-40.jpg' },
+            { name: 'Топ 5', image: 'https://i.ibb.co/XfTvWD7f/photo-2024-12-26-18-28-43.jpg' },
+            { name: 'Топ 6', image: 'https://i.ibb.co/99TzLtY8/photo-2024-12-26-18-28-46.jpg' },
+            { name: 'Топ 7', image: 'https://i.ibb.co/Ndjx7C0g/photo-2024-12-26-18-28-49.jpg' }
         ];
 
-        // Добавляем топы в галерею
         const topsGallery = document.getElementById('tops-gallery');
-        
         tops.forEach(top => {
             const topItem = document.createElement('img');
             topItem.className = 'top-item';
@@ -477,30 +433,21 @@
             const label = document.createElement('div');
             label.className = 'item-label';
             label.textContent = top.name;
-            
             topItem.appendChild(label);
             topsGallery.appendChild(topItem);
         });
 
-        // Декор
+        // Декор (стразы, наклейки, блёстки)
         const decorItems = [
-            { 
-                name: 'Декор 1', 
-                image: 'https://i.ibb.co/tTZ3BNdH/photo-2024-12-26-18-28-52.jpg'
-            },
-            { 
-                name: 'Декор 2', 
-                image: 'https://i.ibb.co/N2p8gHsD/photo-2024-12-26-18-28-55.jpg'
-            },
-            { 
-                name: 'Декор 3', 
-                image: 'https://i.ibb.co/Q7HKg7yh/photo-2024-12-26-18-28-58.jpg'
-            }
+            { name: 'Стразы', image: 'https://i.ibb.co/hR9PX4Dw/20251212-171841.jpg' },
+            { name: 'Наклейки 1', image: 'https://i.ibb.co/1fbLdTLv/20251212-172008.jpg' },
+            { name: 'Наклейки 2', image: 'https://i.ibb.co/Sw05XrRW/20251212-171951.jpg' },
+            { name: 'Наклейки 3', image: 'https://i.ibb.co/9mfs7mb4/20251212-171933.jpg' },
+            { name: 'Наклейки 4', image: 'https://i.ibb.co/7x00bP8p/20251212-171916.jpg' },
+            { name: 'Блёстки', image: 'https://i.ibb.co/60yx1WX7/20251212-171340.jpg' }
         ];
 
-        // Добавляем декор в галерею (центрируем)
         const decorGallery = document.getElementById('decor-gallery');
-        
         decorItems.forEach(decor => {
             const decorItem = document.createElement('img');
             decorItem.className = 'decor-item';
@@ -510,26 +457,17 @@
             const label = document.createElement('div');
             label.className = 'item-label';
             label.textContent = decor.name;
-            
             decorItem.appendChild(label);
             decorGallery.appendChild(decorItem);
         });
 
-        // Стемпинг - добавляем ваши фото (центрируем)
+        // Стемпинг
         const stampingItems = [
-            { 
-                name: 'Стемпинг 1', 
-                image: 'https://i.ibb.co/6Jw79jhc/photo-2024-12-26-18-29-01.jpg'
-            },
-            { 
-                name: 'Стемпинг 2', 
-                image: 'https://i.ibb.co/WpgY14WK/photo-2024-12-26-18-29-04.jpg'
-            }
+            { name: 'Стемпинг 1', image: 'https://i.ibb.co/6Jw79jhc/photo-2024-12-26-18-29-01.jpg' },
+            { name: 'Стемпинг 2', image: 'https://i.ibb.co/WpgY14WK/photo-2024-12-26-18-29-04.jpg' }
         ];
 
-        // Заполняем стемпинг изображениями (центрируем)
         const stampingGallery = document.getElementById('stamping-gallery');
-        
         stampingItems.forEach(stamp => {
             const stampItem = document.createElement('img');
             stampItem.className = 'stamp-item';
@@ -539,7 +477,6 @@
             const label = document.createElement('div');
             label.className = 'item-label';
             label.textContent = stamp.name;
-            
             stampItem.appendChild(label);
             stampingGallery.appendChild(stampItem);
         });
