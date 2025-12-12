@@ -95,9 +95,18 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
-        .stamp-item, .decor-item, .top-item {
-            width: 180px;
-            height: 180px;
+        /* Горизонтальные галереи для всех разделов */
+        .horizontal-gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 1.5rem 0;
+            scroll-behavior: smooth;
+        }
+
+        .gallery-item {
+            width: 220px; /* Увеличено для лучшего просмотра */
+            height: 220px;
             object-fit: cover;
             border-radius: 15px;
             flex-shrink: 0;
@@ -106,7 +115,7 @@
             position: relative;
         }
 
-        .stamp-item:hover, .decor-item:hover, .top-item:hover {
+        .gallery-item:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
@@ -220,43 +229,44 @@
             border-left: 4px solid #9c4dcc;
         }
 
-        .gallery {
-            display: flex;
-            overflow-x: auto;
-            gap: 20px;
-            padding: 1.5rem 0;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        #stamping-gallery {
-            justify-content: center;
-        }
-
-        #decor-gallery {
-            justify-content: center;
-        }
-
+        /* Стили для карусели */
         .colors-carousel::-webkit-scrollbar,
-        .gallery::-webkit-scrollbar {
+        .horizontal-gallery::-webkit-scrollbar {
             height: 8px;
         }
 
         .colors-carousel::-webkit-scrollbar-track,
-        .gallery::-webkit-scrollbar-track {
+        .horizontal-gallery::-webkit-scrollbar-track {
             background: #f1f1f1;
             border-radius: 10px;
         }
 
         .colors-carousel::-webkit-scrollbar-thumb,
-        .gallery::-webkit-scrollbar-thumb {
+        .horizontal-gallery::-webkit-scrollbar-thumb {
             background: #9c4dcc;
             border-radius: 10px;
         }
 
         .colors-carousel::-webkit-scrollbar-thumb:hover,
-        .gallery::-webkit-scrollbar-thumb:hover {
+        .horizontal-gallery::-webkit-scrollbar-thumb:hover {
             background: #7a3da3;
+        }
+
+        .contact-qr {
+            margin-top: 15px;
+            text-align: center;
+        }
+        .contact-qr img {
+            width: 120px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            margin-bottom: 5px;
+        }
+        .qr-caption {
+            font-size: 0.9rem;
+            color: #ccc;
+            font-style: italic;
         }
     </style>
 </head>
@@ -278,21 +288,21 @@
 
     <section class="gallery-section">
         <h2>🌟 Декоративные топы</h2>
-        <div class="gallery" id="tops-gallery">
+        <div class="horizontal-gallery" id="tops-gallery">
             <!-- Декоративные топы будут добавлены через JavaScript -->
         </div>
     </section>
 
     <section class="gallery-section">
         <h2>🖼️ Стемпинг</h2>
-        <div class="gallery" id="stamping-gallery">
+        <div class="horizontal-gallery" id="stamping-gallery">
             <!-- Стемпинг будет добавлен через JavaScript -->
         </div>
     </section>
 
     <section class="gallery-section">
         <h2>💎 Декор</h2>
-        <div class="gallery" id="decor-gallery">
+        <div class="horizontal-gallery" id="decor-gallery">
             <!-- Декор будет добавлен через JavaScript -->
         </div>
     </section>
@@ -301,24 +311,16 @@
         <h2>💰 Прайс-лист</h2>
         <table class="price-table">
             <tr>
-                <td class="service-name">Маникюр с покрытием (маникюр + покрытие гель-лаком)</td>
+                <td class="service-name">Маникюр с покрытием (маникюр + покрытие гель-лаком + укрепление до 3 ногтей)</td>
                 <td>700 руб.</td>
             </tr>
             <tr>
-                <td class="service-name">Маникюр с укреплением (маникюр + покрытие гель-лаком + укрепление полигелем)</td>
+                <td class="service-name">Маникюр с наращиванием (маникюр + покрытие гель-лаком + наращивание)</td>
                 <td>900 руб.</td>
             </tr>
             <tr>
-                <td class="service-name">Маникюр без покрытия (снятие)</td>
+                <td class="service-name">Маникюр без покрытия (снятие + обработка кутикулы)</td>
                 <td>200 руб.</td>
-            </tr>
-            <tr>
-                <td class="service-name">Декоративные топы</td>
-                <td>+200 руб.</td>
-            </tr>
-            <tr>
-                <td class="service-name">Декор (стразы, наклейки, блёстки)</td>
-                <td>+100 руб.</td>
             </tr>
         </table>
         
@@ -331,11 +333,15 @@
     <footer>
         <p>📞 Телефон: +7 (980) 332-67-35</p>
         <p>📍 Адрес: ул. Комсомольская, д. 194, кв. 24</p>
+        <div class="contact-qr">
+            <img src="https://i.ibb.co/1GBCTVST/Screenshot-20251212-225840-Telegram.jpg" alt="QR-код для связи в Telegram">
+            <p class="qr-caption">Напишите мне в Telegram!</p>
+        </div>
         <p style="margin-top: 15px; font-style: italic;">"Преображаем не только ногти, но и настроение!"</p>
     </footer>
 
     <script>
-        // Ваша палитра цветов в правильном порядке
+        // Ваша палитра цветов
         const colors = [
             { number: '009', hex: '#63B6CD' },
             { number: '025', hex: '#78B6BF' },
@@ -397,8 +403,8 @@
             { number: '020', hex: '#B8B0BF' }
         ];
 
+        // Палитра цветов
         const colorsCarousel = document.getElementById('colors-carousel');
-        
         colors.forEach(color => {
             const colorItem = document.createElement('div');
             colorItem.className = 'color-item';
@@ -426,7 +432,7 @@
         const topsGallery = document.getElementById('tops-gallery');
         tops.forEach(top => {
             const topItem = document.createElement('img');
-            topItem.className = 'top-item';
+            topItem.className = 'gallery-item';
             topItem.src = top.image;
             topItem.alt = top.name;
             
@@ -437,7 +443,27 @@
             topsGallery.appendChild(topItem);
         });
 
-        // Декор (стразы, наклейки, блёстки)
+        // Стемпинг
+        const stampingItems = [
+            { name: 'Стемпинг 1', image: 'https://i.ibb.co/FbWh199v/20251212-171507.jpg' },
+            { name: 'Стемпинг 2', image: 'https://i.ibb.co/r1wsWH8/20251212-171438.jpg' }
+        ];
+
+        const stampingGallery = document.getElementById('stamping-gallery');
+        stampingItems.forEach(stamp => {
+            const stampItem = document.createElement('img');
+            stampItem.className = 'gallery-item';
+            stampItem.src = stamp.image;
+            stampItem.alt = stamp.name;
+            
+            const label = document.createElement('div');
+            label.className = 'item-label';
+            label.textContent = stamp.name;
+            stampItem.appendChild(label);
+            stampingGallery.appendChild(stampItem);
+        });
+
+        // Декор
         const decorItems = [
             { name: 'Стразы', image: 'https://i.ibb.co/hR9PX4Dw/20251212-171841.jpg' },
             { name: 'Наклейки 1', image: 'https://i.ibb.co/1fbLdTLv/20251212-172008.jpg' },
@@ -450,7 +476,7 @@
         const decorGallery = document.getElementById('decor-gallery');
         decorItems.forEach(decor => {
             const decorItem = document.createElement('img');
-            decorItem.className = 'decor-item';
+            decorItem.className = 'gallery-item';
             decorItem.src = decor.image;
             decorItem.alt = decor.name;
             
@@ -459,26 +485,6 @@
             label.textContent = decor.name;
             decorItem.appendChild(label);
             decorGallery.appendChild(decorItem);
-        });
-
-        // Стемпинг
-        const stampingItems = [
-            { name: 'Стемпинг 1', image: 'https://i.ibb.co/6Jw79jhc/photo-2024-12-26-18-29-01.jpg' },
-            { name: 'Стемпинг 2', image: 'https://i.ibb.co/WpgY14WK/photo-2024-12-26-18-29-04.jpg' }
-        ];
-
-        const stampingGallery = document.getElementById('stamping-gallery');
-        stampingItems.forEach(stamp => {
-            const stampItem = document.createElement('img');
-            stampItem.className = 'stamp-item';
-            stampItem.src = stamp.image;
-            stampItem.alt = stamp.name;
-            
-            const label = document.createElement('div');
-            label.className = 'item-label';
-            label.textContent = stamp.name;
-            stampItem.appendChild(label);
-            stampingGallery.appendChild(stampItem);
         });
     </script>
 </body>
