@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Искусство ногтей и слов | Маникюр с душой</title>
     <style>
-        /* Основные стили без изменений */
         * {
             margin: 0;
             padding: 0;
@@ -19,22 +18,106 @@
             font-style: italic;
         }
 
-        /* ... остальные стили без изменений ... */
+        header {
+            background: linear-gradient(135deg, #b19cd9 0%, #ffb6c1 100%);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
 
-        /* Специальный стиль для изображений СТЕМПИНГА */
-        .stamping-item {
-            width: 280px; /* Увеличена ширина для прямоугольных фото */
-            height: 200px; /* Уменьшена высота для пропорций */
-            object-fit: contain; /* Важно: фото целиком в контейнере */
-            border-radius: 10px;
+        header::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        .gallery-section {
+            padding: 2rem;
+            margin: 1rem auto;
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .colors-carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 2rem 1rem;
+            scroll-behavior: smooth;
+        }
+
+        .color-item {
+            width: 100px;
+            height: 100px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .color-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .color-number {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(156, 77, 204, 0.7);
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Горизонтальные галереи для всех разделов */
+        .horizontal-gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 1.5rem 0;
+            scroll-behavior: smooth;
+        }
+
+        /* ИЗМЕНЕНИЕ ТОЛЬКО ЗДЕСЬ: для изображений стемпинга */
+        #stamping-gallery .gallery-item {
+            width: 280px; /* Увеличена ширина */
+            height: 200px; /* Уменьшена высота для прямоугольной формы */
+            object-fit: contain; /* Фото помещается целиком */
+            border-radius: 15px;
             flex-shrink: 0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             transition: transform 0.3s ease;
             position: relative;
-            background-color: #f9f9f9; /* Фон если фото уже */
+            background-color: #f9f9f9; /* Фон для прозрачных фото */
         }
 
-        /* Обычный стиль для других изображений (топы, декор) */
+        /* Обычный стиль для других изображений */
         .gallery-item {
             width: 220px;
             height: 220px;
@@ -46,13 +129,159 @@
             position: relative;
         }
 
-        /* Общие стили для всех изображений */
-        .stamping-item:hover, .gallery-item:hover {
+        .gallery-item:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
 
-        /* ... остальные стили без изменений ... */
+        .item-label {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            background: rgba(156, 77, 204, 0.9);
+            color: white;
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 0 0 15px 15px;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+            color: white;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+            color: #9c4dcc;
+            text-align: center;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            position: relative;
+            padding: 0 2rem;
+        }
+
+        .quote::before {
+            content: "“";
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 3rem;
+            opacity: 0.7;
+        }
+
+        .quote::after {
+            content: "”";
+            position: absolute;
+            right: 0;
+            bottom: -20px;
+            font-size: 3rem;
+            opacity: 0.7;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .price-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .service-name {
+            font-weight: bold;
+            color: #9c4dcc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #333;
+            color: white;
+            margin-top: 2rem;
+        }
+
+        .tagline {
+            font-style: italic;
+            margin-top: 10px;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .gallery-section {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .psychology-note {
+            background: #ffecf1;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+            text-align: center;
+            border-left: 4px solid #9c4dcc;
+        }
+
+        /* Стили для карусели */
+        .colors-carousel::-webkit-scrollbar,
+        .horizontal-gallery::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .colors-carousel::-webkit-scrollbar-track,
+        .horizontal-gallery::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .colors-carousel::-webkit-scrollbar-thumb,
+        .horizontal-gallery::-webkit-scrollbar-thumb {
+            background: #9c4dcc;
+            border-radius: 10px;
+        }
+
+        .colors-carousel::-webkit-scrollbar-thumb:hover,
+        .horizontal-gallery::-webkit-scrollbar-thumb:hover {
+            background: #7a3da3;
+        }
+
+        .contact-qr {
+            margin-top: 15px;
+            text-align: center;
+        }
+        .contact-qr img {
+            width: 120px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            margin-bottom: 5px;
+        }
+        .qr-caption {
+            font-size: 0.9rem;
+            color: #ccc;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -66,22 +295,30 @@
 
     <section class="gallery-section">
         <h2>🎨 Палитра цветов</h2>
-        <div class="colors-carousel" id="colors-carousel"></div>
+        <div class="colors-carousel" id="colors-carousel">
+            <!-- Цвета будут добавлены через JavaScript -->
+        </div>
     </section>
 
     <section class="gallery-section">
         <h2>🌟 Декоративные топы</h2>
-        <div class="horizontal-gallery" id="tops-gallery"></div>
+        <div class="horizontal-gallery" id="tops-gallery">
+            <!-- Декоративные топы будут добавлены через JavaScript -->
+        </div>
     </section>
 
     <section class="gallery-section">
         <h2>🖼️ Стемпинг (серебро, золото, черный, белый цвет)</h2>
-        <div class="horizontal-gallery" id="stamping-gallery"></div>
+        <div class="horizontal-gallery" id="stamping-gallery">
+            <!-- Стемпинг будет добавлен через JavaScript -->
+        </div>
     </section>
 
     <section class="gallery-section">
         <h2>💎 Декор</h2>
-        <div class="horizontal-gallery" id="decor-gallery"></div>
+        <div class="horizontal-gallery" id="decor-gallery">
+            <!-- Декор будет добавлен через JavaScript -->
+        </div>
     </section>
 
     <section class="gallery-section">
@@ -118,10 +355,65 @@
     </footer>
 
     <script>
-        // Ваша палитра цветов (без изменений)
+        // Ваша палитра цветов
         const colors = [
             { number: '009', hex: '#63B6CD' },
-            // ... весь массив цветов ...
+            { number: '025', hex: '#78B6BF' },
+            { number: '006', hex: '#A7B2CD' },
+            { number: '021', hex: '#2DB0EB' },
+            { number: '022', hex: '#197E9C' },
+            { number: '023', hex: '#0F74AE' },
+            { number: '024', hex: '#281E73' },
+            { number: '052', hex: '#1E1E1E' },
+            { number: '051', hex: '#FEFFFE' },
+            { number: '002', hex: '#D28B80' },
+            { number: '004', hex: '#FA969D' },
+            { number: '003', hex: '#D599AA' },
+            { number: '005', hex: '#CD9DAC' },
+            { number: '014', hex: '#F8AEAA' },
+            { number: '015', hex: '#B18C97' },
+            { number: '018', hex: '#CABCD2' },
+            { number: '026', hex: '#AA9AC1' },
+            { number: '019', hex: '#D4CFDF' },
+            { number: '010', hex: '#9477C7' },
+            { number: '027', hex: '#B69CDA' },
+            { number: '017', hex: '#D699BF' },
+            { number: '008', hex: '#D05571' },
+            { number: '042', hex: '#FD3A6D' },
+            { number: '041', hex: '#F02767' },
+            { number: '028', hex: '#974580' },
+            { number: '030', hex: '#53106D' },
+            { number: '029', hex: '#751B80' },
+            { number: '055', hex: '#9397A3' },
+            { number: '056', hex: '#B9AFA5' },
+            { number: '057', hex: '#8C6247' },
+            { number: '011', hex: '#DCBC86' },
+            { number: '012', hex: '#BFA98A' },
+            { number: '001', hex: '#D5A520' },
+            { number: '031', hex: '#CBEF5C' },
+            { number: '007', hex: '#50C29B' },
+            { number: '034', hex: '#57C7A1' },
+            { number: '033', hex: '#01BA4B' },
+            { number: '032', hex: '#85EF31' },
+            { number: '035', hex: '#DF7600' },
+            { number: '036', hex: '#DE5E01' },
+            { number: '037', hex: '#CC452C' },
+            { number: '043', hex: '#D20001' },
+            { number: '044', hex: '#A90C0D' },
+            { number: '045', hex: '#8E0006' },
+            { number: '039', hex: '#722428' },
+            { number: '038', hex: '#8D372C' },
+            { number: '046', hex: '#931320' },
+            { number: '048', hex: '#971151' },
+            { number: '040', hex: '#3F063A' },
+            { number: '047', hex: '#7E004A' },
+            { number: '013', hex: '#996E68' },
+            { number: '016', hex: '#846970' },
+            { number: '058', hex: '#5B1900' },
+            { number: '059', hex: '#351001' },
+            { number: '060', hex: '#220C01' },
+            { number: '053', hex: '#737C8D' },
+            { number: '054', hex: '#979FB0' },
             { number: '020', hex: '#B8B0BF' }
         ];
 
@@ -165,7 +457,7 @@
             topsGallery.appendChild(topItem);
         });
 
-        // СТЕМПИНГ - специальный стиль для прямоугольных фото
+        // Стемпинг
         const stampingItems = [
             { name: 'Стемпинг 1', image: 'https://i.ibb.co/VpwGm7Z1/20251212-171507.jpg' },
             { name: 'Стемпинг 2', image: 'https://i.ibb.co/ymqNzSBm/20251212-171438.jpg' }
@@ -174,7 +466,7 @@
         const stampingGallery = document.getElementById('stamping-gallery');
         stampingItems.forEach(stamp => {
             const stampItem = document.createElement('img');
-            stampItem.className = 'stamping-item'; // Используем специальный класс!
+            stampItem.className = 'gallery-item'; // Класс остался прежним
             stampItem.src = stamp.image;
             stampItem.alt = stamp.name;
             
